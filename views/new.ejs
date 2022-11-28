@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div>
+          <form action="/animals" method="post">
+            <fieldset>
+                <legend>Create a New Fruit</legend>
+              <label>
+                NAME:<input
+                  type="text"
+                  name="name"
+                  placeholder="enter animals name"
+                />
+              </label>
+              <label>
+                SPECIES:<input
+                  type="text"
+                  name="species"
+                  placeholder="enter animals species"
+                />
+              </label>
+              <label>
+                extinct:<input type="checkbox" name="extinct" />
+              </label>
+              <label>
+                LOCATION:<input
+                  type="text"
+                  name="location"
+                  placeholder="enter animals location"
+                />
+              </label><label>
+                Life Expectancy<input
+                  type="number"
+                  name="lifeExpectancy"
+                  placeholder="enter animals lifeExpectancy"
+                />
+              </label>
+            </fieldset>
+            <input type="submit" value="create new fruit" />
+          </form>
+        </div>
+      </main>
+    
+</body>
+</html>

@@ -3,9 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require("morgan")
 const methodOverride = require('method-override')
-const { GridFSBucketWriteStream } = require('mongodb')
 const PORT = process.env.PORT
 const app = express() 
+app.use("/static", express.static("public")) 
 
 const DATABASE_URL = process.env.DATABASE_URL
 const CONFIG = {
@@ -80,10 +80,27 @@ app.post('/animals', (req, res) => {
     req.body.extinct = req.body.extinct === 'on' ? true : false
     Animal.create(req.body,(err, animal) => {
         console.log(animal)
-        res.render('/animals/index')
+        res.redirect('/animals')
+    })
+})
+//edit page
+app.get('/animals/:id/edit', (req, res) => {
+    Animal.findById(req.params.id, (err, foundAnimal) => {
+        res.render('edit.ejs', 
+        {animal: foundAnimal})
     })
 })
 
+//edit post
+app.put('/animals/:id', (req, res) => {
+
+    req.body.extinct = req.body.extinct === 'on'?true : false
+
+    Animal.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, data) =>{
+        console.log(err)
+        res.redirect(`/animals/${req.params.id}`)
+    })
+})
 
 
 //show
@@ -93,6 +110,12 @@ app.get('/animals/:id', (req, res) => {
         res.render('show.ejs', {animal})
     })
     
+})
+
+app.delete('/animals/:id',(req, res) => {
+    Animal.findByIdAndDelete(req.params.id, (err, data) => {
+        res.redirect('/animals')
+    })
 })
 
 

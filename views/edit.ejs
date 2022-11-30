@@ -9,13 +9,14 @@
 <body>
     <main>
         <div>
-          <form action="/animals" method="post">
+          <form action="/animals/<%= animal._id %>?_method=PUT" method="post">
             <fieldset>
-                <legend>Create a New Fruit</legend>
+                <legend>Edit Animal</legend>
               <label>
                 NAME:<input
                   type="text"
                   name="name"
+                  value="<%=animal.name%>"
                   placeholder="enter animals name"
                 />
               </label>
@@ -23,27 +24,30 @@
                 SPECIES:<input
                   type="text"
                   name="species"
+                  value="<%=animal.species%>"
                   placeholder="enter animals species"
                 />
               </label>
               <label>
-                extinct:<input type="checkbox" name="extinct" />
+                extinct:<input type="checkbox" name="extinct" value='<%= animal.extinct ? 'checked' : '' %>'/>
               </label>
               <label>
                 LOCATION:<input
                   type="text"
                   name="location"
+                  value="<%=animal.location%>"
                   placeholder="enter animals location"
                 />
               </label><label>
                 Life Expectancy<input
                   type="number"
                   name="lifeExpectancy"
+                  value="<%=animal.lifeExpectancy%>"
                   placeholder="enter animals lifeExpectancy"
                 />
               </label>
             </fieldset>
-            <input type="submit" value="create new animal" />
+            <input type="submit" value="edit animal" />
           </form>
         </div>
         <a href="/animals"><button>To Index</button></a>
